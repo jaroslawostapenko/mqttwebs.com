@@ -1,345 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mqttwebs | Mobile-First Web Solutions</title>
-    <meta name="description" content="Custom websites, web apps, and digital solutions for the modern world.">
-    <!-- Link to CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons (CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MqttWebs - Mobile Transformation Agency</title>
+    <meta name="description" content="Transform your desktop website into a high-performance mobile experience with MqttWebs." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .rotate-y-12 {
+        transform: rotateY(12deg);
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-
-    <!-- Navigation -->
-    <header id="navbar">
-        <div class="container nav-container">
-            <a href="#hero" class="logo">mqtt<span class="highlight">webs</span>.</a>
-            
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="#hero" class="nav-link">Home</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li><a href="#process" class="nav-link">Process</a></li>
-                    <li><a href="#contact" class="btn-primary">Get a Quote</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 class="animate-text">Future-Proof <br><span class="highlight">Web Development</span></h1>
-            <p class="animate-text delay-1">We craft high-performance websites, web apps, and digital experiences optimized for mobile phones and modern businesses.</p>
-            <div class="hero-btns animate-text delay-2">
-                <a href="#services" class="btn-primary">Explore Services</a>
-                <a href="#portfolio" class="btn-secondary">View Work</a>
-            </div>
-        </div>
-        
-        <!-- Animated Background Elements -->
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Expertise</h2>
-                <p>Tailored solutions for every digital need.</p>
-                <div class="line"></div>
-            </div>
-
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card" data-aos="fade-up">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3>Custom Websites</h3>
-                    <p>Bespoke coded websites tailored to your brand identity. Fast, secure, and SEO friendly structure.</p>
-                    <a href="#contact" class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="service-card" data-aos="fade-up">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-mobile-screen"></i>
-                    </div>
-                    <h3>Landing Pages</h3>
-                    <p>High-conversion landing pages designed to turn visitors into leads. Optimized for marketing campaigns.</p>
-                    <a href="#contact" class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="service-card" data-aos="fade-up">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <h3>Web Applications</h3>
-                    <p>Complex logic and functionality delivered through the browser. React, Vue, and Node.js solutions.</p>
-                    <a href="#contact" class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card" data-aos="fade-up">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
-                    <h3>Web Shops</h3>
-                    <p>Full-featured E-commerce platforms. Payment integration, inventory management, and user accounts.</p>
-                    <a href="#contact" class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="service-card" data-aos="fade-up">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <h3>Portfolios</h3>
-                    <p>Showcase your personal brand or agency work with stunning, interactive gallery designs.</p>
-                    <a href="#contact" class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack (scrolling banner) -->
-    <div class="tech-ticker">
-        <div class="ticker-track">
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>JavaScript</span>
-            <span>React</span>
-            <span>NodeJS</span>
-            <span>MongoDB</span>
-            <span>WordPress</span>
-            <span>Shopify</span>
-            <span>AWS</span>
-            <!-- Duplicate for infinite loop visual -->
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>JavaScript</span>
-            <span>React</span>
-            <span>NodeJS</span>
-            <span>MongoDB</span>
-            <span>WordPress</span>
-            <span>Shopify</span>
-            <span>AWS</span>
-        </div>
-    </div>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding bg-dark">
-        <div class="container">
-            <div class="section-header">
-                <h2>Recent Works</h2>
-                <p>Check out what we've built for our clients.</p>
-                <div class="line"></div>
-            </div>
-
-            <!-- Filter Buttons -->
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Websites</button>
-                <button class="filter-btn" data-filter="app">Apps</button>
-                <button class="filter-btn" data-filter="shop">E-Commerce</button>
-            </div>
-
-            <!-- Gallery -->
-            <div class="portfolio-grid">
-                <!-- Item 1 -->
-                <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-img">
-                        <!-- Placeholder image -->
-                        <div class="placeholder-img" style="background: linear-gradient(45deg, #1a1a1a, #2c3e50);"></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h4>FinTech Corp</h4>
-                        <p>Corporate Website</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="portfolio-item" data-category="app">
-                    <div class="portfolio-img">
-                        <div class="placeholder-img" style="background: linear-gradient(45deg, #2c3e50, #e74c3c);"></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h4>TaskMaster</h4>
-                        <p>Productivity Web App</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="portfolio-item" data-category="shop">
-                    <div class="portfolio-img">
-                        <div class="placeholder-img" style="background: linear-gradient(45deg, #e67e22, #f1c40f);"></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h4>SneakerHead</h4>
-                        <p>E-Commerce Store</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-img">
-                        <div class="placeholder-img" style="background: linear-gradient(45deg, #8e44ad, #3498db);"></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h4>Dr. Smith</h4>
-                        <p>Medical Portfolio</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>How We Work</h2>
-                <p>A transparent process from concept to launch.</p>
-                <div class="line"></div>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h2>1</h2>
-                        <h3>Discovery</h3>
-                        <p>We meet to discuss your goals, target audience, and requirements to outline the scope.</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <h2>2</h2>
-                        <h3>Design</h3>
-                        <p>We create wireframes and UI mockups to ensure the visual direction aligns with your brand.</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h2>3</h2>
-                        <h3>Development</h3>
-                        <p>Our developers code the solution using the latest technologies and best practices.</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <h2>4</h2>
-                        <h3>Launch</h3>
-                        <p>After rigorous testing, we deploy your site to the live server and provide support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-dark">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2>Let's build something great.</h2>
-                    <p>Ready to start your project? Contact mqttwebs today.</p>
-                    
-                    <div class="info-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>+1 (555) 123-4567</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>hello@mqttwebs.com</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Tech Valley, CA</span>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#"><i class="fa-brands fa-github"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="contact-form-box">
-                    <form id="projectForm">
-                        <div class="input-group">
-                            <input type="text" id="name" required>
-                            <label for="name">Your Name</label>
-                        </div>
-                        <div class="input-group">
-                            <input type="email" id="email" required>
-                            <label for="email">Email Address</label>
-                        </div>
-                        <div class="input-group">
-                            <select id="service" required>
-                                <option value="" disabled selected></option>
-                                <option value="website">Custom Website</option>
-                                <option value="landing">Landing Page</option>
-                                <option value="webapp">Web App</option>
-                                <option value="shop">Web Shop</option>
-                            </select>
-                            <label for="service">Interested Service</label>
-                        </div>
-                        <div class="input-group">
-                            <textarea id="message" rows="5" required></textarea>
-                            <label for="message">Project Details</label>
-                        </div>
-                        <button type="submit" class="btn-primary full-width">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h3>mqttwebs.</h3>
-                <p>Empowering businesses with mobile-first web solutions since 2024.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 mqttwebs Development. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript Link -->
-    <script src="script.js"></script>
+  <body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
