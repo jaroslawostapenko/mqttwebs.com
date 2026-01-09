@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-
 /**
  * MqttWebs Core Application Logic
  * Architecture: Class-based modular design
@@ -7,7 +5,6 @@ import * as THREE from 'three';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Modules
-    new ThreeBackground();
     new NavigationController();
     new ScrollObserver();
     new CounterAnimation();
@@ -18,120 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new ContactFormHandler();
     new ScrollProgress();
 });
-
-/* =========================================
-   3D Background (Three.js)
-   ========================================= */
-class ThreeBackground {
-    constructor() {
-        this.container = document.getElementById('canvas-container');
-        if (!this.container) return;
-
-        this.scene = null;
-        this.camera = null;
-        this.renderer = null;
-        this.particles = null;
-        this.mouseX = 0;
-        this.mouseY = 0;
-        
-        this.init();
-        this.animate();
-        this.addListeners();
-    }
-
-    init() {
-        // Scene Setup
-        this.scene = new THREE.Scene();
-        // Fog for depth
-        this.scene.fog = new THREE.FogExp2(0x0a0a0f, 0.002);
-
-        // Camera
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-        this.camera.position.z = 500;
-
-        // Renderer
-        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        this.container.appendChild(this.renderer.domElement);
-
-        // Geometry (Particles)
-        const geometry = new THREE.BufferGeometry();
-        const particlesCount = 700;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i++) {
-            // Spread particles in a wide area
-            posArray[i] = (Math.random() - 0.5) * 2000;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-        // Material
-        const material = new THREE.PointsMaterial({
-            size: 2,
-            color: 0x00f2ea,
-            transparent: true,
-            opacity: 0.8,
-        });
-
-        // Mesh
-        this.particles = new THREE.Points(geometry, material);
-        this.scene.add(this.particles);
-
-        // Lines connecting particles (using LineSegments for performance)
-        // Note: Real-time dynamic lines in ThreeJS can be heavy. 
-        // We will stick to a static-ish geometry that rotates or use a simple line loop.
-        // For 'mqtt' style connectivity, we can add a secondary object.
-        
-        const lineGeo = new THREE.BufferGeometry();
-        // Creating a wireframe sphere to represent the "Web"
-        const sphereGeo = new THREE.IcosahedronGeometry(300, 1);
-        const wireframe = new THREE.WireframeGeometry(sphereGeo);
-        
-        this.webLines = new THREE.LineSegments(wireframe);
-        this.webLines.material.depthTest = false;
-        this.webLines.material.opacity = 0.15;
-        this.webLines.material.transparent = true;
-        this.webLines.material.color = new THREE.Color(0x0066ff);
-        
-        this.scene.add(this.webLines);
-    }
-
-    animate() {
-        requestAnimationFrame(this.animate.bind(this));
-
-        const time = Date.now() * 0.0005;
-
-        // Rotate Particles
-        this.particles.rotation.y = time * 0.1;
-        this.particles.rotation.x = time * 0.05;
-
-        // Rotate Web
-        this.webLines.rotation.x = time * 0.05;
-        this.webLines.rotation.y = time * 0.05;
-
-        // Mouse Interaction Parallax
-        this.camera.position.x += (this.mouseX * 10 - this.camera.position.x) * 0.05;
-        this.camera.position.y += (-this.mouseY * 10 - this.camera.position.y) * 0.05;
-        this.camera.lookAt(this.scene.position);
-
-        this.renderer.render(this.scene, this.camera);
-    }
-
-    addListeners() {
-        document.addEventListener('mousemove', (event) => {
-            this.mouseX = (event.clientX / window.innerWidth) - 0.5;
-            this.mouseY = (event.clientY / window.innerHeight) - 0.5;
-        });
-
-        window.addEventListener('resize', () => {
-            this.camera.aspect = window.innerWidth / window.innerHeight;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    }
-}
 
 /* =========================================
    Navigation Controller
